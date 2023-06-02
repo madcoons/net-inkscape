@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <ItemGroup>
-        <None Include="$(MSBuildThisFileDirectory)../Inkscape-x86_64.AppImage">
+        <Content Include="$(MSBuildThisFileDirectory)../runtime/Inkscape-x86_64.AppImage">
+            <Link>Inkscape-x86_64.AppImage</Link>
             <CopyToOutputDirectory>Never</CopyToOutputDirectory>
             <CopyToOutputDirectory Condition="$([MSBuild]::IsOSPlatform('Linux'))">PreserveNewest</CopyToOutputDirectory>
             <Pack>True</Pack>
-        </None>
-        <None Include="inkscape-win/**/*">
+            <PackagePath>runtime</PackagePath>
+        </Content>
+        <Content Include="$(MSBuildThisFileDirectory)../runtime/inkscape-win/**/*">
+            <Link>inkscape-win/%(RecursiveDir)%(Filename)%(Extension)</Link>
             <CopyToOutputDirectory>Never</CopyToOutputDirectory>
             <CopyToOutputDirectory Condition="$([MSBuild]::IsOSPlatform('Windows'))">PreserveNewest</CopyToOutputDirectory>
             <Pack>True</Pack>
-        </None>
+            <PackagePath>runtime/inkscape-win</PackagePath>
+        </Content>
     </ItemGroup>
 </Project>
