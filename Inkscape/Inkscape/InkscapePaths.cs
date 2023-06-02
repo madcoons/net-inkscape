@@ -1,10 +1,9 @@
 ﻿using System.Runtime.InteropServices;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace Inkscape;
 
-public static class Inkscape
+public static class InkscapePaths
 {
     public static string InkscapeExecutablePath = RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
         ? Path.Join(AppDomain.CurrentDomain.BaseDirectory, "Inkscape-x86_64.AppImage")
@@ -22,7 +21,7 @@ public static class Inkscape
         import os
         # raise Exception(os.getcwd())
         raise Exception(os.environ['INKSCAPE_COMMAND'])
-        open('{Inkscape.ExtensionsBasePath}/inkex/__init__.py')
+        open('{ExtensionsBasePath}/inkex/__init__.py')
         """;
 
     public static string[] EmbeddedPythonExecutableRequiredArgs = RuntimeInformation.IsOSPlatform(OSPlatform.Linux)

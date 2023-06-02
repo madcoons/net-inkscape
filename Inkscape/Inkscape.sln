@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inkscape", "Inkscape\Inksca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inkscape.Test", "Inkscape.Test\Inkscape.Test.csproj", "{A079A81A-DF72-4BAA-985E-CE8FB2BD6E6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inkscape.Example", "Inkscape.Example\Inkscape.Example.csproj", "{6ACA0A0E-EAB1-4CB8-9B5B-BE646BA224BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{A079A81A-DF72-4BAA-985E-CE8FB2BD6E6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A079A81A-DF72-4BAA-985E-CE8FB2BD6E6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A079A81A-DF72-4BAA-985E-CE8FB2BD6E6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ACA0A0E-EAB1-4CB8-9B5B-BE646BA224BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ACA0A0E-EAB1-4CB8-9B5B-BE646BA224BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ACA0A0E-EAB1-4CB8-9B5B-BE646BA224BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ACA0A0E-EAB1-4CB8-9B5B-BE646BA224BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

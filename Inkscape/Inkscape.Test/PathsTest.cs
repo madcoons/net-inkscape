@@ -13,8 +13,8 @@ public class PathsTest
         using MemoryStream stdError = new();
 
         Command command = Cli
-            .Wrap(Inkscape.InkscapeExecutablePath)
-            .WithArguments(Inkscape.InkscapeExecutableRequiredArgs.Concat(new[] { "--version" }));
+            .Wrap(InkscapePaths.InkscapeExecutablePath)
+            .WithArguments(InkscapePaths.InkscapeExecutableRequiredArgs.Concat(new[] { "--version" }));
 
         try
         {
@@ -38,8 +38,8 @@ public class PathsTest
         using MemoryStream stdError = new();
 
         Command command = Cli
-            .Wrap(Inkscape.EmbeddedPythonExecutablePath)
-            .WithArguments(Inkscape.EmbeddedPythonExecutableRequiredArgs.Concat(new[] { "--version" }));
+            .Wrap(InkscapePaths.EmbeddedPythonExecutablePath)
+            .WithArguments(InkscapePaths.EmbeddedPythonExecutableRequiredArgs.Concat(new[] { "--version" }));
         try
         {
             await (command | (stdOut, stdError))
@@ -62,12 +62,13 @@ public class PathsTest
         using MemoryStream stdError = new();
 
         string pytonCheckScript = $"""
-        open('{Inkscape.ExtensionsBasePath}/inkex/__init__.py')
+        open('{InkscapePaths.ExtensionsBasePath}/inkex/__init__.py')
         """;
 
         Command command = Cli
-            .Wrap(Inkscape.EmbeddedPythonExecutablePath)
-            .WithArguments(Inkscape.EmbeddedPythonExecutableRequiredArgs.Concat(new[] { "-c", pytonCheckScript, }));
+            .Wrap(InkscapePaths.EmbeddedPythonExecutablePath)
+            .WithArguments(
+                InkscapePaths.EmbeddedPythonExecutableRequiredArgs.Concat(new[] { "-c", pytonCheckScript, }));
 
         try
         {

@@ -1,17 +1,12 @@
-# Inkscape executable for linux and windows
-
-Example usage:
-```cs
-using System.Text;
+﻿using System.Text;
 using CliWrap;
-using Inkscape;
 
 using MemoryStream stdOut = new();
 using MemoryStream stdError = new();
 
 Command command = Cli
-    .Wrap(InkscapePaths.EmbeddedPythonExecutablePath)
-    .WithArguments(InkscapePaths.EmbeddedPythonExecutableRequiredArgs.Concat(new[] { "--version" }));
+    .Wrap(Inkscape.Inkscape.EmbeddedPythonExecutablePath)
+    .WithArguments(Inkscape.Inkscape.EmbeddedPythonExecutableRequiredArgs.Concat(new[] { "--version" }));
 try
 {
     await (command | (stdOut, stdError))
@@ -25,4 +20,3 @@ catch (Exception ex)
 
 string message = Encoding.UTF8.GetString(stdOut.ToArray());
 Console.WriteLine(message);
-```
