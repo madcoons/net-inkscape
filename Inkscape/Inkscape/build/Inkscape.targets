@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory)../Inkscape-x86_64.AppImage">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+            <CopyToOutputDirectory Condition="$([MSBuild]::IsOSPlatform('Linux'))">PreserveNewest</CopyToOutputDirectory>
+            <Pack>True</Pack>
+        </None>
+        <None Include="inkscape-win/**/*">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+            <CopyToOutputDirectory Condition="$([MSBuild]::IsOSPlatform('Windows'))">PreserveNewest</CopyToOutputDirectory>
+            <Pack>True</Pack>
+        </None>
+    </ItemGroup>
+</Project>

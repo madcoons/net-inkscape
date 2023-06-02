@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -19,20 +18,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="../../README.md" Pack="true" PackagePath="\" />
+        <None Include="../../README.md" Pack="true" PackagePath="/" />
+        <None Include="build/Inkscape.targets" pack="true" PackagePath="build/" />
+        <None Include="build/Inkscape.targets" Pack="true" PackagePath="buildMultiTargeting/" />
+        <None Include="build/Inkscape.targets" Pack="true" PackagePath="buildTransitive/" />
     </ItemGroup>
 
-    <ItemGroup>
-        <None Include="Inkscape-x86_64.AppImage">
-            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-            <CopyToOutputDirectory Condition="$([MSBuild]::IsOSPlatform('Linux'))">PreserveNewest</CopyToOutputDirectory>
-            <Pack>True</Pack>
-        </None>
-        <None Include="inkscape-win/**/*">
-            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-            <CopyToOutputDirectory Condition="$([MSBuild]::IsOSPlatform('Windows'))">PreserveNewest</CopyToOutputDirectory>
-            <Pack>True</Pack>
-        </None>
-    </ItemGroup>
-
+    <Import Project="build/Inkscape.targets" />
 </Project>
