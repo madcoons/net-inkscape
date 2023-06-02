@@ -1,12 +1,13 @@
 ﻿using System.Text;
 using CliWrap;
+using Inkscape;
 
 using MemoryStream stdOut = new();
 using MemoryStream stdError = new();
 
 Command command = Cli
-    .Wrap(Inkscape.Inkscape.EmbeddedPythonExecutablePath)
-    .WithArguments(Inkscape.Inkscape.EmbeddedPythonExecutableRequiredArgs.Concat(new[] { "--version" }));
+    .Wrap(InkscapePaths.InkscapeExecutablePath)
+    .WithArguments(InkscapePaths.InkscapeExecutableRequiredArgs.Concat(new[] { "--version" }));
 try
 {
     await (command | (stdOut, stdError))

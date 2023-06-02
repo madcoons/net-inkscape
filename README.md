@@ -10,8 +10,8 @@ using MemoryStream stdOut = new();
 using MemoryStream stdError = new();
 
 Command command = Cli
-    .Wrap(InkscapePaths.EmbeddedPythonExecutablePath)
-    .WithArguments(InkscapePaths.EmbeddedPythonExecutableRequiredArgs.Concat(new[] { "--version" }));
+    .Wrap(InkscapePaths.InkscapeExecutablePath)
+    .WithArguments(InkscapePaths.InkscapeExecutableRequiredArgs.Concat(new[] { "--version" }));
 try
 {
     await (command | (stdOut, stdError))
@@ -24,5 +24,5 @@ catch (Exception ex)
 }
 
 string message = Encoding.UTF8.GetString(stdOut.ToArray());
-Console.WriteLine(message);
+Consol
 ```
