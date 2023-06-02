@@ -7,7 +7,7 @@
 
     <PropertyGroup>
         <PackageId>Inkscape</PackageId>
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
         <Authors>Miroljub</Authors>
         <Company>MyDesigns</Company>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

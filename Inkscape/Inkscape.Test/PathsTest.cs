@@ -20,16 +20,15 @@ public class PathsTest
         {
             await (command | (stdOut, stdError))
                 .ExecuteAsync();
-
-            string message = Encoding.UTF8.GetString(stdOut.ToArray());
-
-            Assert.StartsWith("Inkscape ", message);
         }
         catch (Exception ex)
         {
-            string message = Encoding.UTF8.GetString(stdError.ToArray());
-            throw new(message, ex);
+            string errorMessage = Encoding.UTF8.GetString(stdError.ToArray());
+            throw new(errorMessage, ex);
         }
+
+        string message = Encoding.UTF8.GetString(stdOut.ToArray());
+        Assert.StartsWith("Inkscape ", message);
     }
 
     [Fact]
@@ -45,16 +44,15 @@ public class PathsTest
         {
             await (command | (stdOut, stdError))
                 .ExecuteAsync();
-
-            string message = Encoding.UTF8.GetString(stdOut.ToArray());
-
-            Assert.StartsWith("Python ", message);
         }
         catch (Exception ex)
         {
-            string message = Encoding.UTF8.GetString(stdError.ToArray());
-            throw new(message, ex);
+            string errorMessage = Encoding.UTF8.GetString(stdError.ToArray());
+            throw new(errorMessage, ex);
         }
+
+        string message = Encoding.UTF8.GetString(stdOut.ToArray());
+        Assert.StartsWith("Python ", message);
     }
 
     [Fact]
@@ -69,16 +67,12 @@ public class PathsTest
 
         Command command = Cli
             .Wrap(Inkscape.EmbeddedPythonExecutablePath)
-            .WithArguments(Inkscape.EmbeddedPythonExecutableRequiredArgs.Concat(new[] { "-c", pytonCheckScript }));
+            .WithArguments(Inkscape.EmbeddedPythonExecutableRequiredArgs.Concat(new[] { "-c", pytonCheckScript, }));
 
         try
         {
             await (command | (stdOut, stdError))
                 .ExecuteAsync();
-
-            string message = Encoding.UTF8.GetString(stdOut.ToArray());
-
-            Assert.StartsWith("Python ", message);
         }
         catch (Exception ex)
         {
