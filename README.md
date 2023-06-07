@@ -24,5 +24,5 @@ catch (Exception ex)
 }
 
 string message = Encoding.UTF8.GetString(stdOut.ToArray());
-Consol
+Console.WriteLine(message);
 ```
