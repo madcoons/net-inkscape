@@ -35,7 +35,7 @@ public static class InkscapePaths
     private static string GetAppImageHash()
     {
         using MD5 md5 = MD5.Create();
-        using FileStream fileStream = File.Open(InkscapeExecutablePath, FileMode.Open);
+        using FileStream fileStream = File.Open(InkscapeExecutablePath, FileMode.Open, FileAccess.Read);
         byte[] hashBytes = md5.ComputeHash(fileStream);
         return Convert.ToHexString(hashBytes).ToLower();
     }
