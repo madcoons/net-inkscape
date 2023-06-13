@@ -9,7 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="CliWrap" Version="3.6.3" />
-      <PackageReference Include="Inkscape" Version="0.1.2" />
+      <PackageReference Include="Inkscape" Version="0.1.5" />
     </ItemGroup>
 
 </Project>
