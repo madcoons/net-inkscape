@@ -7,7 +7,7 @@
 
     <PropertyGroup>
         <PackageId>Inkscape</PackageId>
-        <Version>0.1.4</Version>
+        <Version>0.1.5</Version>
         <Authors>Miroljub</Authors>
         <Company>MyDesigns</Company>
         <RepositoryUrl>https://github.com/madcoons/net-inkscape.git</RepositoryUrl>

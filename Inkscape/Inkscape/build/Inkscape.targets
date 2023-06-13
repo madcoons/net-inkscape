@@ -17,7 +17,10 @@
             <PackagePath>runtime/inkscape-win</PackagePath>
         </Content>
     </ItemGroup>
-    <Target Name="MakeAppImageExecutable" AfterTargets="Build" Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+    <Target Name="MakeAppImageExecutableInBuild" AfterTargets="Build" Condition="$([MSBuild]::IsOSPlatform('Linux'))">
         <Exec Command="chmod a+x $(OutputPath)/Inkscape-x86_64.AppImage"/>
+    </Target>
+    <Target Name="MakeAppImageExecutableInPublish" AfterTargets="Publish" Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+        <Exec Command="chmod a+x $(PublishDir)/Inkscape-x86_64.AppImage"/>
     </Target>
 </Project>
