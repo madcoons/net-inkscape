@@ -22,6 +22,11 @@ RUN sed -i 's/SVG_PARSER = etree.XMLParser(huge_tree=True, strip_cdata=False)/SV
 
 RUN #cat squashfs-root/usr/share/inkscape/extensions/inkex/base.py && exit 1
 
+# Issue: https://gitlab.com/inkscape/inkscape/-/issues/2969
+RUN apt-get download shared-mime-info
+RUN find *.deb -exec dpkg-deb -x {} squashfs-root/ \;
+RUN find *.deb -delete
+
 RUN ./appimagetool-x86_64.AppImage --appimage-extract-and-run squashfs-root/
 #RUN ls -l && exit 1
 

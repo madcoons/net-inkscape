@@ -16,15 +16,9 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-    - name: Restore
-      working-directory: Inkscape
-      run: dotnet restore
-    - name: Build
-      working-directory: Inkscape
-      run: dotnet build --no-restore --configuration Release
     - name: Pack
       working-directory: Inkscape
-      run: dotnet pack --no-build --configuration Release
+      run: dotnet pack Inkscape --configuration Release
     - name: Publish
       working-directory: Inkscape
       run: dotnet nuget push Inkscape/bin/Release/Inkscape.*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://www.nuget.org --skip-duplicate

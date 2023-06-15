@@ -62,7 +62,7 @@ public class PathsTest
         using MemoryStream stdError = new();
 
         string pytonCheckScript = $"""
-        open('{InkscapePaths.ExtensionsBasePath}/inkex/__init__.py')
+        open('{InkscapePaths.ExtensionsBasePath.Replace("\\", "/")}/inkex/__init__.py')
         """;
 
         Command command = Cli
