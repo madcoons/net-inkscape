@@ -19,6 +19,9 @@ jobs:
     - name: Pack
       working-directory: Inkscape
       run: dotnet pack Inkscape --configuration Release
+    - name: Check size
+      working-directory: Inkscape
+      run: ls -l Inkscape/bin/Release/Inkscape.*.nupkg
     - name: Publish
       working-directory: Inkscape
       run: dotnet nuget push Inkscape/bin/Release/Inkscape.*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://www.nuget.org --skip-duplicate
