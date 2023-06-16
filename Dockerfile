@@ -5,6 +5,14 @@ RUN dnf install -y file p7zip p7zip-plugins
 RUN dnf --installroot=/inkscape-linux/ --nodocs --releasever=/ --setopt install_weak_deps=false install -y inkscape-1.2.2-7.fc38
 COPY AppRun /inkscape-linux/
 RUN chmod +x /inkscape-linux/AppRun
+
+# Cleanup cache
+RUN find /inkscape-linux/ | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | xargs rm -rf
+RUN rm -rf /inkscape-linux/var/cache
+
+# Check size
+# RUN du -sh -- inkscape-linux/*  | sort -rh && exit 1
+
 RUN ln -s /inkscape-linux/usr/share/applications/org.inkscape.Inkscape.desktop /inkscape-linux/org.inkscape.Inkscape.desktop
 COPY org.inkscape.Inkscape.png /inkscape-linux/org.inkscape.Inkscape.png
 
@@ -12,6 +20,8 @@ ADD https://inkscape.org/gallery/item/37364/inkscape-1.2.2_2022-12-09_732a01da63
     https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage ./
 
 RUN chmod +x appimagetool-x86_64.AppImage
+
+# RUN ./appimagetool-x86_64.AppImage --appimage-extract-and-run --help && exit 1
 
 RUN 7z x inkscape-1.2.2_2022-12-09_732a01da63-x64.7z && mv inkscape-1.2.2_2022-12-09_732a01da63-x64 inkscape-win
 
@@ -21,6 +31,9 @@ RUN sed -i 's/SVG_PARSER = etree.XMLParser(huge_tree=True, strip_cdata=False)/SV
 
 # Getnerate ./Inkscape-x86_64.AppImage
 RUN ./appimagetool-x86_64.AppImage --appimage-extract-and-run -n /inkscape-linux/
+
+# Check generated
+# RUN ls -l ./Inkscape-x86_64.AppImage && exit 1
 
 # Test inkscape
 # RUN ./Inkscape-x86_64.AppImage --appimage-extract-and-run --version && exit 1
