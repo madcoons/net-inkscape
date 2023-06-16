@@ -17,15 +17,8 @@ public static class InkscapePaths
         ? Path.Join(AppDomain.CurrentDomain.BaseDirectory, "Inkscape-x86_64.AppImage")
         : Path.Join(AppDomain.CurrentDomain.BaseDirectory, "inkscape-win", "bin", "python.exe");
 
-    private static string pytonCheckScript = $"""
-        import os
-        # raise Exception(os.getcwd())
-        raise Exception(os.environ['INKSCAPE_COMMAND'])
-        open('{ExtensionsBasePath}/inkex/__init__.py')
-        """;
-
     public static string[] EmbeddedPythonExecutableRequiredArgs = RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
-        ? new[] { "--appimage-extract-and-run", "python3.8", }
+        ? new[] { "--appimage-extract-and-run", "python3", }
         : Array.Empty<string>();
 
     public static string ExtensionsBasePath = RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
