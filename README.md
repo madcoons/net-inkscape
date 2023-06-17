@@ -1,4 +1,6 @@
-# Inkscape executable for linux and windows
+# Portable Inkscape executable for linux and windows
+
+Current shipped Inkscape version: `1.2.2`
 
 Example usage:
 ```cs

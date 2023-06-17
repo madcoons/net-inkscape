@@ -1,10 +1,5 @@
 #!/bin/bash
 
-HERE="$(dirname "$(readlink -f "${0}")")"
-
-# Custom AppRun script for Inkscape
-# by Simon Peter
-
 ############################################################################################
 # Allow AppRun or the AppImage to be symlinked to, e.g.,
 # /usr/local/bin/inkview
@@ -16,19 +11,19 @@ if [ ! -z $APPIMAGE ] ; then
 else
   BINARY_NAME=$(basename "$0")
 fi
-if [ ! -z "$1" ] && [ -e "$HERE/usr/bin/$1" ] ; then
-  MAIN="$HERE/usr/bin/$1" ; shift
-elif [ -e "$HERE/usr/bin/$BINARY_NAME" ] ; then
-  MAIN="$HERE/usr/bin/$BINARY_NAME"
+if [ ! -z "$1" ] && [ -e "$APPDIR/usr/bin/$1" ] ; then
+  MAIN="$APPDIR/usr/bin/$1" ; shift
+elif [ -e "$APPDIR/usr/bin/$BINARY_NAME" ] ; then
+  MAIN="$APPDIR/usr/bin/$BINARY_NAME"
 else
-  MAIN="$HERE/usr/bin/inkscape"
+  MAIN="$APPDIR/usr/bin/inkscape"
 fi
 
 ############################################################################################
 # Prefer to run the bundled executables (e.g., Python)
 ############################################################################################
 
-export PATH="${HERE}/usr/bin:${PATH}"
+export PATH="${APPDIR}/usr/bin:${PATH}"
 
 ############################################################################################
 # Run experimental bundle that bundles everything if a private ld-linux-x86-64.so.2 is there
@@ -37,20 +32,20 @@ export PATH="${HERE}/usr/bin:${PATH}"
 PLATFORM=x86_64-linux-gnu
 
 # Glib/Gtk environment
-export GCONV_PATH="$HERE/usr/lib/$PLATFORM/gconv"
-export FONTCONFIG_FILE="$HERE/etc/fonts/fonts.conf"
-export GTK_EXE_PREFIX="$HERE/usr"
-export GDK_PIXBUF_MODULEDIR=$(readlink -f "$HERE"/usr/lib/$PLATFORM/gdk-pixbuf-*/*/loaders/ )
-export GDK_PIXBUF_MODULE_FILE=$(readlink -f "$HERE"/usr/lib/$PLATFORM/gdk-pixbuf-*/*/loaders.cache ) # Patched to contain no paths
-export GI_TYPELIB_PATH="$HERE/usr/lib/$PLATFORM/girepository-1.0"
+export GCONV_PATH="$APPDIR/usr/lib/$PLATFORM/gconv"
+export FONTCONFIG_FILE="$APPDIR/etc/fonts/fonts.conf"
+export GTK_EXE_PREFIX="$APPDIR/usr"
+export GDK_PIXBUF_MODULEDIR=$(readlink -f "$APPDIR"/usr/lib/$PLATFORM/gdk-pixbuf-*/*/loaders/ )
+export GDK_PIXBUF_MODULE_FILE=$(readlink -f "$APPDIR"/usr/lib/$PLATFORM/gdk-pixbuf-*/*/loaders.cache ) # Patched to contain no paths
+export GI_TYPELIB_PATH="$APPDIR/usr/lib/$PLATFORM/girepository-1.0"
 
 # For bundled themes
-export XDG_DATA_DIRS="$HERE/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export XDG_DATA_DIRS="$APPDIR/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
 
 # Shared library path
-LIBRARY_PATH="$HERE/lib/$PLATFORM"
-LIBRARY_PATH+=":$HERE/usr/lib/$PLATFORM"
-LIBRARY_PATH+=":$HERE/usr/lib"
+LIBRARY_PATH="$APPDIR/lib/$PLATFORM"
+LIBRARY_PATH+=":$APPDIR/usr/lib/$PLATFORM"
+LIBRARY_PATH+=":$APPDIR/usr/lib"
 LIBRARY_PATH+=":$GDK_PIXBUF_MODULEDIR" # Otherwise getting "Unable to load image-loading module"
 
 # Otherwise getting "Unable to load image-loading module" when opening extension manager
@@ -58,6 +53,6 @@ export LD_LIBRARY_PATH="$GDK_PIXBUF_MODULEDIR"
 
 
 # Set inkscape data dir
-export INKSCAPE_DATADIR="${HERE}/usr/share"
+export INKSCAPE_DATADIR="$APPDIR/usr/share"
 
-exec "$HERE/lib/$PLATFORM/ld-linux-x86-64.so.2" --inhibit-cache --library-path "$LIBRARY_PATH" "$MAIN" "$@"
+exec "$APPDIR/lib/$PLATFORM/ld-linux-x86-64.so.2" --inhibit-cache --library-path "$LIBRARY_PATH" "$MAIN" "$@"
