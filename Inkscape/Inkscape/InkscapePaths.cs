@@ -18,7 +18,7 @@ public static class InkscapePaths
         : Path.Join(AppDomain.CurrentDomain.BaseDirectory, "inkscape-win", "bin", "python.exe");
 
     public static string[] EmbeddedPythonExecutableRequiredArgs = RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
-        ? new[] { "--appimage-extract-and-run", "python3", }
+        ? new[] { "--appimage-extract-and-run", "python3.11", }
         : Array.Empty<string>();
 
     public static string ExtensionsBasePath = RuntimeInformation.IsOSPlatform(OSPlatform.Linux)
