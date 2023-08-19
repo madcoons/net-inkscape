@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CliWrap" Version="3.6.3" />
+      <PackageReference Include="CliWrap" Version="3.6.4" />
       <PackageReference Include="Inkscape" Version="0.1.10" />
     </ItemGroup>
 
